@@ -3,14 +3,14 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-	<groupId>com.lazerycode.selenium</groupId>
+	<groupId>mx.com.jimenezlav</groupId>
 	<artifactId>maven-template</artifactId>
 	<version>1.0-SNAPSHOT</version>
 	<modelVersion>4.0.0</modelVersion>
 
-	<name>Selenium Maven Template</name>
-	<description>A Maven Template For Selenium</description>
-	<url>http://www.lazerycode.com</url>
+	<name>Unit Test and Integration Test</name>
+	<description>A Maven Template For Unit Test and Integration Test</description>
+	<url>https://github.com/jivel</url>
 
 	<licenses>
 		<license>
@@ -27,13 +27,13 @@
 		<java.version>1.8</java.version>
 		<!--Dependency Versions -->
 		<selenium.version>3.141.59</selenium.version>
-		<assertj-core.version>3.12.2</assertj-core.version>
-		<testng.version>6.14.3</testng.version>
-		<query.version>2.0.0-BETA3</query.version>
+		<junit.version>4.12</junit.version>
 		<!--Plugin Versions -->
 		<driver-binary-downloader-maven-plugin.version>1.0.17</driver-binary-downloader-maven-plugin.version>
 		<maven-compiler-plugin.version>3.8.0</maven-compiler-plugin.version>
 		<maven-failsafe-plugin.version>2.22.1</maven-failsafe-plugin.version>
+		<build-helper-maven-plugin.version>3.0.0</build-helper-maven-plugin.version>
+		<jacoco-maven-plugin.version>0.8.4</jacoco-maven-plugin.version>
 		<!--Configuration Properties -->
 		<overwrite.binaries>false</overwrite.binaries>
 		<read.timeout>30000</read.timeout>
@@ -69,7 +69,7 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.12</version>
+			<version>${junit.version}</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
@@ -159,7 +159,7 @@
 					<plugin>
 						<groupId>org.codehaus.mojo</groupId>
 						<artifactId>build-helper-maven-plugin</artifactId>
-						<version>1.5</version>
+						<version>${build-helper-maven-plugin.version}</version>
 						<executions>
 							<execution>
 								<id>add-test-source</id>
@@ -178,7 +178,7 @@
 					<plugin>
 						<groupId>org.jacoco</groupId>
 						<artifactId>jacoco-maven-plugin</artifactId>
-						<version>0.8.3</version>
+						<version>${jacoco-maven-plugin.version}</version>
 						<executions>
 							<execution>
 								<id>coverage-initialize</id>
