@@ -1,36 +1,30 @@
-package com.lazerycode.selenium.page_objects;
+package mx.com.jimenezlav.selenium.page;
 
-import com.lazerycode.selenium.DriverBase;
-import com.lazerycode.selenium.util.Query;
 import org.openqa.selenium.By;
-
-import static com.lazerycode.selenium.util.AssignDriver.initQueryObjects;
+import org.openqa.selenium.WebDriver;
 
 public class GoogleHomePage {
 
-    private Query searchBar = new Query().defaultLocator(By.name("q"));
-    private Query googleSearch = new Query().defaultLocator(By.name("btnK"));
-    private Query imFeelingLucky = new Query().defaultLocator(By.name("btnI"));
+	private final WebDriver webDriver;
 
-    public GoogleHomePage() throws Exception {
-        initQueryObjects(this, DriverBase.getDriver());
-    }
+	public GoogleHomePage(WebDriver webDriver) throws Exception {
+		this.webDriver = webDriver;
+	}
 
-    public GoogleHomePage enterSearchTerm(String searchTerm) {
-        searchBar.findWebElement().clear();
-        searchBar.findWebElement().sendKeys(searchTerm);
+	public GoogleHomePage enterSearchTerm(String searchTerm) {
+		webDriver.findElement(By.name("q")).clear();
+		webDriver.findElement(By.name("q")).sendKeys(searchTerm);
 
-        return this;
-    }
+		return this;
+	}
 
-    public GoogleHomePage submitSearch() {
-        googleSearch.findWebElement().submit();
+	public GoogleHomePage submitSearch() {
+		webDriver.findElement(By.name("btnK")).submit();
+		return this;
+	}
 
-        return this;
-    }
-
-    public void getLucky() {
-        imFeelingLucky.findWebElement().click();
-    }
+	public void getLucky() {
+		webDriver.findElement(By.name("btnI")).click();
+	}
 
 }

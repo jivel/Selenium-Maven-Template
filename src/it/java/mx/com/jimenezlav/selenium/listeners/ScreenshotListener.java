@@ -1,19 +1,14 @@
-package com.lazerycode.selenium.listeners;
-
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.remote.Augmenter;
-import org.testng.ITestResult;
-import org.testng.TestListenerAdapter;
+package mx.com.jimenezlav.selenium.listeners;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-import static com.lazerycode.selenium.DriverBase.getDriver;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
 
-public class ScreenshotListener extends TestListenerAdapter {
+public class ScreenshotListener {
 
     private boolean createFile(File screenshot) {
         boolean fileCreated = false;
@@ -45,26 +40,26 @@ public class ScreenshotListener extends TestListenerAdapter {
         }
     }
 
-    @Override
-    public void onTestFailure(ITestResult failingTest) {
-        try {
-            WebDriver driver = getDriver();
-            String screenshotDirectory = System.getProperty("screenshotDirectory", "target/screenshots");
-            String screenshotAbsolutePath = screenshotDirectory + File.separator + System.currentTimeMillis() + "_" + failingTest.getName() + ".png";
-            File screenshot = new File(screenshotAbsolutePath);
-            if (createFile(screenshot)) {
-                try {
-                    writeScreenshotToFile(driver, screenshot);
-                } catch (ClassCastException weNeedToAugmentOurDriverObject) {
-                    writeScreenshotToFile(new Augmenter().augment(driver), screenshot);
-                }
-                System.out.println("Written screenshot to " + screenshotAbsolutePath);
-            } else {
-                System.err.println("Unable to create " + screenshotAbsolutePath);
-            }
-        } catch (Exception ex) {
-            System.err.println("Unable to capture screenshot...");
-            ex.printStackTrace();
-        }
-    }
+//    @Override
+//    public void onTestFailure(ITestResult failingTest) {
+//        try {
+//            WebDriver driver = getDriver();
+//            String screenshotDirectory = System.getProperty("screenshotDirectory", "target/screenshots");
+//            String screenshotAbsolutePath = screenshotDirectory + File.separator + System.currentTimeMillis() + "_" + failingTest.getName() + ".png";
+//            File screenshot = new File(screenshotAbsolutePath);
+//            if (createFile(screenshot)) {
+//                try {
+//                    writeScreenshotToFile(driver, screenshot);
+//                } catch (ClassCastException weNeedToAugmentOurDriverObject) {
+//                    writeScreenshotToFile(new Augmenter().augment(driver), screenshot);
+//                }
+//                System.out.println("Written screenshot to " + screenshotAbsolutePath);
+//            } else {
+//                System.err.println("Unable to create " + screenshotAbsolutePath);
+//            }
+//        } catch (Exception ex) {
+//            System.err.println("Unable to capture screenshot...");
+//            ex.printStackTrace();
+//        }
+//    }
 }

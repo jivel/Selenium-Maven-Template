@@ -1,4 +1,4 @@
-package com.lazerycode.selenium.config;
+package mx.com.jimenezlav.selenium.config;
 
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
