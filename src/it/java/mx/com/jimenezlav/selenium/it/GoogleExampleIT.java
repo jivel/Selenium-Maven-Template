@@ -1,5 +1,6 @@
 package mx.com.jimenezlav.selenium.it;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
@@ -15,7 +16,7 @@ public class GoogleExampleIT extends DriverBase {
 	}
 
 	@Test
-	public void googleCheeseExample() throws Exception {
+	public void google_findPageObject_PatternOrAntipattern() throws Exception {
 		// Create a new WebDriver instance
 		// Notice that the remainder of the code relies on the interface,
 		// not the implementation.
@@ -31,14 +32,16 @@ public class GoogleExampleIT extends DriverBase {
 		// Check the title of the page
 		System.out.println("Page title is: " + driver.getTitle());
 
-		googleHomePage.enterSearchTerm("Cheese").submitSearch();
+		Assert.assertTrue(googleHomePage.enterSearchTerm("Page Object").isDisplayed());
+		Assert.assertTrue(googleHomePage.submitSearch().isEnabled());
 
 		// Google's search is rendered dynamically with JavaScript.
 		// Wait for the page to load, timeout after 10 seconds
 		WebDriverWait wait = new WebDriverWait(driver, 10, 100);
-		wait.until(pageTitleStartsWith("Cheese"));
+		wait.until(pageTitleStartsWith("Page Object"));
 
-		// Should see: "cheese! - Google Search"
+		Assert.assertTrue(driver.getTitle().contains("Page Object"));
+
 		System.out.println("Page title is: " + driver.getTitle());
 	}
 

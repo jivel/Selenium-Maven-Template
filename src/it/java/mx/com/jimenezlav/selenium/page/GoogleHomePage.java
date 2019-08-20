@@ -2,6 +2,7 @@ package mx.com.jimenezlav.selenium.page;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 public class GoogleHomePage {
 
@@ -11,16 +12,17 @@ public class GoogleHomePage {
 		this.webDriver = webDriver;
 	}
 
-	public GoogleHomePage enterSearchTerm(String searchTerm) {
-		webDriver.findElement(By.name("q")).clear();
-		webDriver.findElement(By.name("q")).sendKeys(searchTerm);
-
-		return this;
+	public WebElement enterSearchTerm(String searchTerm) {
+		WebElement q = webDriver.findElement(By.name("q"));
+		q.clear();
+		q.sendKeys(searchTerm);
+		return q;
 	}
 
-	public GoogleHomePage submitSearch() {
-		webDriver.findElement(By.name("btnK")).submit();
-		return this;
+	public WebElement submitSearch() {
+		WebElement webElement = webDriver.findElement(By.name("btnK"));
+		webElement.submit();
+		return webElement;
 	}
 
 	public void getLucky() {
